@@ -18,4 +18,11 @@ router.get(
   }
 );
 
+//desc logoutuser
+//route /auth/lougout
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
 module.exports = router;
