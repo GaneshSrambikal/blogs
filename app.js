@@ -7,6 +7,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 const connectDB = require("./config/db");
 const routes = require("./routes/index");
+const auth = require("./routes/auth");
 //config
 dotenv.config({ path: "./config/config.env" });
 
@@ -31,7 +32,7 @@ app.use(
   session({
     secret: "cookies dof",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
   })
 );
 
@@ -44,6 +45,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //routes
 app.use("/", routes);
+app.use("/auth", auth);
 
 const PORT = process.env.PORT || 3000;
 
